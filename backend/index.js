@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-
+import userRoutes from './routes/user.js'
+import productRoutes from './routes/product.js';
 // configure dotenv
 dotenv.config();
 const PORT = process.env.PORT || 3009;
@@ -24,7 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // use routes
-
+app.use(userRoutes)
+app.use(productRoutes);
 // handle 404
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Page is not found' });
